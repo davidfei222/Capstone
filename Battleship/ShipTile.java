@@ -18,7 +18,7 @@ public class ShipTile extends Tile
      */
     public ShipTile(int idIn)
     {
-        super(Color.BLUE);
+        super(Color.GRAY);
         this.id = idIn;
     }
             

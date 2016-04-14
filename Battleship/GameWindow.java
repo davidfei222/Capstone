@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * The window that displays the game
@@ -12,6 +13,8 @@ public class GameWindow extends JFrame
     private static final int HEIGHT = 700;
     /** Width of the window*/
     private static final int WIDTH = 1100;
+    /** The player's grid*/
+    GridPanel playerGrid;
 
     /**
      * Default constructor for objects of class GameWindow, 
@@ -21,8 +24,8 @@ public class GameWindow extends JFrame
     {
         setSize(WIDTH, HEIGHT);
         setTitle("Battleship");
-        GridPanel playerGrid = new GridPanel();
-        add(playerGrid);
+        this.playerGrid = new GridPanel();
+        add(this.playerGrid);
         add(new MenuPanel());
     }
     

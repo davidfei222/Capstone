@@ -15,6 +15,8 @@ abstract public class Tile extends JPanel
     private static final int WIDTH = 20;
     /** The background of the tile */
     private Color background;
+    /** The state of the tile*/
+    private boolean state;
 
     /**
      * Default constructor for objects of class Tile
@@ -24,25 +26,34 @@ abstract public class Tile extends JPanel
         setSize(WIDTH, HEIGHT);
         this.background = bkgrnd;
         setBackground(background);
+        this.state = false;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
+     * Sets the state of the tile
      *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
+     * @param    status   The new state of the tile
      */
-    public void sampleMethod(int y)
+    public void setState(boolean status)
     {
-        // put your code here
-        
+        this.state = status;        
     }
     
+    /**
+     * Returns the state of the tile
+     * 
+     * @return   True if the tile is hit, false if not
+     */
+    public boolean getState()
+    {
+        return this.state;
+    }
+    
+    /**
+     * Returns the ID of the tile
+     * 
+     * @return  The ID of the tile
+     */
     abstract public int getID();
     
 
