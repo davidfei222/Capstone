@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * An individual tile on the map that contains either ocean or a ship section.
@@ -6,18 +7,23 @@ import javax.swing.*;
  * @author David Fei
  * @version 4/13/16
  */
-public class Tile extends JPanel
+abstract public class Tile extends JPanel
 {
     /** The height of the tile*/
     private static final int HEIGHT = 20;
+    /** The width of the tile*/
+    private static final int WIDTH = 20;
+    /** The background of the tile */
+    private Color background;
 
     /**
      * Default constructor for objects of class Tile
      */
-    public Tile()
+    public Tile(Color bkgrnd)
     {
-        // initialise instance variables
-        
+        setSize(WIDTH, HEIGHT);
+        this.background = bkgrnd;
+        setBackground(background);
     }
 
     /**
@@ -36,5 +42,8 @@ public class Tile extends JPanel
         // put your code here
         
     }
+    
+    abstract public int getID();
+    
 
 }

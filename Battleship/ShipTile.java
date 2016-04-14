@@ -1,4 +1,4 @@
-
+import java.awt.*;
 
 /**
  * Write a description of class ShipTile here.
@@ -8,17 +8,27 @@
  */
 public class ShipTile extends Tile
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
+    /** ID number indicating what kind of ship it is */
+    private int id;
 
     /**
      * Default constructor for objects of class ShipTile
+     * 
+     * @param   idIn    The ID number of the ship tile (table of values can be found in the README)
      */
-    public ShipTile()
+    public ShipTile(int idIn)
     {
-        // initialise instance variables
-        x = 0;
+        super(Color.BLUE);
+        this.id = idIn;
     }
-
-
+            
+    /**
+     * Returns the ID number of the tile
+     * 
+     * @return  The ID number of the ship tile
+     */
+    public int getID()
+    {
+        return id;
+    }
 }

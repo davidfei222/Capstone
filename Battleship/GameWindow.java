@@ -1,4 +1,4 @@
-
+import javax.swing.*;
 
 /**
  * The window that displays the game
@@ -6,35 +6,32 @@
  * @author David Fei
  * @version 4/13/16
  */
-public class GameWindow 
+public class GameWindow extends JFrame
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
+    /** Height of the window*/
+    private static final int HEIGHT = 700;
+    /** Width of the window*/
+    private static final int WIDTH = 1100;
 
     /**
-     * Default constructor for objects of class GameWindow
+     * Default constructor for objects of class GameWindow, 
+     * contains tile grid and player interface
      */
     public GameWindow()
     {
-        // initialise instance variables
-        x = 0;
+        setSize(WIDTH, HEIGHT);
+        setTitle("Battleship");
+        GridPanel playerGrid = new GridPanel();
+        add(playerGrid);
+        add(new MenuPanel());
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
+     * Main method to run everything
      */
-    public int sampleMethod(int y)
+    public static void main(String[]args)
     {
-        // put your code here
-        return x+y;
+        GameWindow game = new GameWindow();
+        game.setVisible(true);
     }
-
 }
