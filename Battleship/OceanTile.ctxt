@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.params=
-comment0.target=OceanTile()
-comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ OceanTile\r\n
+comment0.params=x\ y\ bkgrnd
+comment0.target=OceanTile(int,\ int,\ java.awt.Color)
+comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ OceanTile\r\n\ \r\n\ @param\ \ \ x\ \ \ X\ coordinate\ of\ placement\r\n\ @param\ \ \ y\ \ \ Y\ coordinate\ of\ placement\r\n\ @param\ \ \ bkgrnd\ \ Background\ color\ of\ tile\r\n
 comment1.params=
 comment1.target=int\ getID()
 comment1.text=\r\n\ Returns\ the\ ID\ number\ of\ the\ tile\r\n\ \r\n\ @return\ \ The\ ID\ number\ for\ ocean\ tiles(0)\r\n

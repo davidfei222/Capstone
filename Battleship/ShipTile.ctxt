@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.params=idIn
-comment0.target=ShipTile(int)
-comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ ShipTile\r\n\ \r\n\ @param\ \ \ idIn\ \ \ \ The\ ID\ number\ of\ the\ ship\ tile\ (table\ of\ values\ can\ be\ found\ in\ the\ README)\r\n
+comment0.params=x\ y\ bkgrnd\ idIn
+comment0.target=ShipTile(int,\ int,\ java.awt.Color,\ int)
+comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ ShipTile\r\n\ \r\n\ @param\ \ \ x\ \ \ X\ coordinate\ of\ placement\r\n\ @param\ \ \ y\ \ \ Y\ coordinate\ of\ placement\r\n\ @param\ \ \ bkgrnd\ \ Background\ color\ of\ ti\r\n\ @param\ \ \ idIn\ \ \ \ The\ ID\ number\ of\ the\ ship\ tile\ (table\ of\ values\ can\ be\ found\ in\ the\ README)\r\n
 comment1.params=
 comment1.target=int\ getID()
 comment1.text=\r\n\ Returns\ the\ ID\ number\ of\ the\ tile\r\n\ \r\n\ @return\ \ The\ ID\ number\ of\ the\ ship\ tile\r\n

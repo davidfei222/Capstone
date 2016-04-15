@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.*;
 
 /**
  * Tile for the ocean
@@ -8,13 +9,20 @@ import java.awt.*;
  */
 public class OceanTile extends Tile
 {
-
+    
+    /**The rectangle object representing the tile*/
+    private Rectangle2D.Double tile;
+    
     /**
      * Default constructor for objects of class OceanTile
+     * 
+     * @param   x   X coordinate of placement
+     * @param   y   Y coordinate of placement
+     * @param   bkgrnd  Background color of tile
      */
-    public OceanTile()
+    public OceanTile(int x, int y, Color bkgrnd)
     {
-        super(Color.BLUE);
+        super(x,y,bkgrnd);
     }
     
     /**

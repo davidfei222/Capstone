@@ -25,7 +25,8 @@ public class GameWindow extends JFrame
         setSize(WIDTH, HEIGHT);
         setTitle("Battleship");
         this.playerGrid = new GridPanel();
-        add(this.playerGrid);
+        add(this.playerGrid, BorderLayout.CENTER);
+        this.playerGrid.setVisible(true);
         add(new MenuPanel());
     }
     
