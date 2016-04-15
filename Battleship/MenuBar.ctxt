@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=MenuBar()
+comment0.text=\r\n\ Constructor\ for\ the\ menu\ before\ the\ game\ starts\r\n
+comment1.params=panel
+comment1.target=MenuBar(PlayerGridPanel)
+comment1.text=\r\n\ Constructor\ for\ the\ menu\ after\ the\ game\ starts\r\n
+comment2.params=y
+comment2.target=void\ sampleMethod(int)
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
+numComments=3

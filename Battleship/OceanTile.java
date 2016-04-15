@@ -8,11 +8,7 @@ import java.awt.geom.*;
  * @version 4/13/16
  */
 public class OceanTile extends Tile
-{
-    
-    /**The rectangle object representing the tile*/
-    private Rectangle2D.Double tile;
-    
+{    
     /**
      * Default constructor for objects of class OceanTile
      * 

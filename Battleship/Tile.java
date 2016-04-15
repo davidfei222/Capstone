@@ -10,15 +10,15 @@ import java.awt.geom.*;
  */
 abstract public class Tile
 {    
-    /** The height of the tile*/
-    private static final int HEIGHT = 20;
-    /** The width of the tile*/
-    private static final int WIDTH = 20;
-    /** The background of the tile */
+    //The height of the tile
+    private static final int HEIGHT = 30;
+    //The width of the tile
+    private static final int WIDTH = 30;
+    //The background of the tile
     private Color background;
-    /** The state of the tile*/
+    //The state of the tile
     private boolean state;
-    /** Rectangle object for the tile*/
+    //Rectangle object for the tile
     private Rectangle2D tile;
 
     /**
@@ -35,11 +35,27 @@ abstract public class Tile
         this.tile = new Rectangle2D.Double(x, y, WIDTH, HEIGHT);
     }
     
+    /**
+     * Draws all the tiles onto the grid panel
+     * 
+     * @param   g2  Graphics module
+     */
     public void draw(Graphics2D g2)
     {
         g2.setColor(this.background);
         g2.draw(tile);
         g2.fill(tile);
+    }
+    
+    /**
+     * Sets the tile to a new location
+     * 
+     * @param   x   New x coordinate
+     * @param   y   New y coordinate
+     */
+    public void setLocation(int x, int y)
+    {
+        this.tile = new Rectangle2D.Double(x, y, WIDTH, HEIGHT);
     }
     
     /**

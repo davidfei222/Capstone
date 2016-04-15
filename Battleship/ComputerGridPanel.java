@@ -1,20 +1,20 @@
-import javax.swing.*;
 
 /**
- * Panel that holds the scores, number of turns, and ships left for each player
+ * The grid panel for the computer player.  Almost exactly the same as the player grid except it 
+ * does not show the ships like it does for the player.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author David Fei
+ * @version 4/15/16
  */
-public class MenuPanel extends JPanel
+public class ComputerGridPanel extends PlayerGridPanel
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class MenuPanel
+     * Constructor for objects of class ComputerGridPanel
      */
-    public MenuPanel()
+    public ComputerGridPanel()
     {
         // initialise instance variables
         x = 0;

@@ -9,13 +9,7 @@ import java.awt.geom.*;
  */
 public class ShipTile extends Tile
 {
-    /** The height of the tile*/
-    private static final int HEIGHT = 20;
-    /** The width of the tile*/
-    private static final int WIDTH = 20;
-    /**The rectangle object representing the tile*/
-    private Rectangle2D.Double tile;
-    /** ID number indicating what kind of ship it is */
+    //ID number indicating what kind of ship it is 
     private int id;
 
     /**

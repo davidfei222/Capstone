@@ -9,12 +9,14 @@ import java.awt.*;
  */
 public class GameWindow extends JFrame
 {
-    /** Height of the window*/
+    // Height of the window
     private static final int HEIGHT = 700;
-    /** Width of the window*/
+    // Width of the window
     private static final int WIDTH = 1100;
-    /** The player's grid*/
-    GridPanel playerGrid;
+    // The player's grid
+    PlayerGridPanel playerGrid;
+    // The menu bar along the top
+    MenuBar menu;
 
     /**
      * Default constructor for objects of class GameWindow, 
@@ -24,10 +26,10 @@ public class GameWindow extends JFrame
     {
         setSize(WIDTH, HEIGHT);
         setTitle("Battleship");
-        this.playerGrid = new GridPanel();
+        this.playerGrid = new PlayerGridPanel();
         add(this.playerGrid, BorderLayout.CENTER);
-        this.playerGrid.setVisible(true);
-        add(new MenuPanel());
+        this.menu = new MenuBar();
+        add(this.menu, BorderLayout.SOUTH);
     }
     
     /**
