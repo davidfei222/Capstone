@@ -10,9 +10,11 @@ import java.awt.*;
 public class GameWindow extends JFrame
 {
     // Height of the window
-    private static final int HEIGHT = 700;
+    private static final int HEIGHT = 650;
     // Width of the window
-    private static final int WIDTH = 1100;
+    private static final int WIDTH = 1200;
+    // Offset from the edges of the screen for grids
+    private static final int OFFSET = 150;
     // The player's grid
     PlayerGridPanel playerGrid;
     // The menu bar along the top
@@ -26,10 +28,13 @@ public class GameWindow extends JFrame
     {
         setSize(WIDTH, HEIGHT);
         setTitle("Battleship");
-        this.playerGrid = new PlayerGridPanel();
-        add(this.playerGrid, BorderLayout.CENTER);
-        this.menu = new MenuBar();
-        add(this.menu, BorderLayout.SOUTH);
+        setLayout(null);
+        playerGrid = new PlayerGridPanel();
+        add(playerGrid);
+        playerGrid.setBounds(OFFSET, OFFSET-50, playerGrid.getSize().width, playerGrid.getSize().height);
+        menu = new MenuBar(playerGrid);
+        add(menu);
+        menu.setBounds(WIDTH/2-menu.getSize().width/2, HEIGHT-150, menu.getSize().width, menu.getSize().height);
     }
     
     /**

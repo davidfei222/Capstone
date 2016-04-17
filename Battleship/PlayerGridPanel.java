@@ -14,12 +14,20 @@ public class PlayerGridPanel extends JPanel
     private static final int WIDTH = 320;
     //Height of the panel
     private static final int HEIGHT = 320;
+    //Offsets for tile placement
+    private int offsetx, offsety;
     //2D array for all the tiles in the grid
     private Tile[][] tiles;
     //Array for a battleship, destroyer and patrol boat tiles
-    private ShipTile[] battleship, destroyer, pboat;
+    private Tile[] battleship, destroyer, pboat;
     //Counts for the length of the battleship, destroyer, and patrol boat arrays
     private int bshipL, destL, pboatL;
+    //Boolean to check if each of the ships has been set yet
+    private boolean bshipSet, destSet, pboatSet;
+    //Variable controlling what ship is currently being set (based on table of ship ID values)
+    private int currentShip;
+    //Indexing for the ship arrays (prevent out of bounds exceptions)
+    private int bshipI, destI, pboatI = 0;
 
     /**
      * Constructor for objects of class GridPanel
@@ -28,8 +36,8 @@ public class PlayerGridPanel extends JPanel
     {
         setSize(WIDTH, HEIGHT);
         tiles = new Tile[10][10];
-        int offsetx = 0;
-        int offsety = 0;
+        offsetx = 0;
+        offsety = 0;
         for(int x = 0; x<tiles.length; x++)
         {
             for(int y = 0; y<tiles[x].length; y++)
@@ -43,44 +51,45 @@ public class PlayerGridPanel extends JPanel
         battleship = new ShipTile[4];
         destroyer = new ShipTile[3];
         pboat = new ShipTile[2];
-        for(int i = 0; i<battleship.length; i++)
+        currentShip = 0;
+        bshipSet = false;
+        destSet = false;
+        pboatSet = false;
+        addMouseListener(new ShipSetListener());
+    }
+    
+    /**
+     * Resets all of the tiles on the grid
+     */
+    public void resetTiles()
+    {
+        for(int x = 0; x<tiles.length; x++)
         {
-            //battleship[i] = new ShipTile(1);
-            if(i<3)
+            for(int y = 0; y<tiles[x].length; y++)
             {
-                //destroyer[i] = new ShipTile(2);
+                if(tiles[x][y].getID()>0)
+                {
+                    Tile tile = tiles[x][y];
+                    tiles[x][y] = new OceanTile(tile.getX(),tile.getY(),Color.BLUE);
+                }
             }
-            if(i<2)
-            {
-                //pboat[i] = new ShipTile(3);
-            }
-        }        
+        }
+        bshipI = 0; 
+        destI = 0; 
+        pboatI = 0;
+        repaint();
     }
     
     /**
-     * Method to set the battleship tiles for the player
+     * Sets the ship that is currently being placed, controlled by buttons on MenuBar
+     * 
+     * @param   current   ID value of the ship being set
      */
-    public void setBattleship()
+    public void setCurrentShip(int current)
     {
-        
+        currentShip = current;
     }
-    
-    /**
-     * Method to set the destroyer tiles for the player
-     */
-    public void setDestroyer()
-    {
         
-    }
-    
-    /**
-     * Method to set the patrol boat tiles for the player
-     */
-    public void setPboat()
-    {
-        
-    }
-    
     /**
      * Draws all of GridPanel's components in
      * 
@@ -96,21 +105,53 @@ public class PlayerGridPanel extends JPanel
             {
                 tiles[x][y].draw(g2);
             }
-        } 
+        }
     }
-    
+
     public class ShipSetListener implements MouseListener
-    {
+    {        
         public void mouseClicked(MouseEvent e)
         {
+            int x = e.getX();
+            int y = e.getY();            
+            for(int a = 0; a<tiles.length; a++)
+            {
+                for(int b = 0; b<tiles[a].length; b++)
+                {
+                    Tile tile = tiles[a][b];
+                    if(tile.isInside(x,y))
+                    {
+                        if(currentShip == 1 && bshipI < 4 )
+                        {
+                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.GRAY,1);
+                            battleship[bshipI] = tiles[a][b];
+                            bshipI++;
+                        }
+                        else if(currentShip == 2 && destI < 3)
+                        {
+                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.BLACK,2);
+                            destroyer[destI] = tiles[a][b];
+                            destI++;
+                        }
+                        else if(currentShip == 3 && pboatI < 2)
+                        {
+                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.RED,3);
+                            pboat[pboatI] = tiles[a][b];
+                            pboatI++;
+                        }
+                    }
+                    
+                }
+            }
+            repaint();
         }
-        
+
         public void mouseEntered(MouseEvent e){}
-        
+
         public void mouseExited(MouseEvent e){}
-        
+
         public void mousePressed(MouseEvent e){}
-        
+
         public void mouseReleased(MouseEvent e){}
     }
 }

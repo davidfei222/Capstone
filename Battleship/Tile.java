@@ -91,6 +91,26 @@ abstract public class Tile
     }
     
     /**
+     * Gets the x coordinate of the upper left corner of the tile
+     * 
+     * @return  The x coordinate of the upper left corner in int form
+     */
+    public int getX()
+    {
+        return(int)(tile.getX());
+    }
+    
+    /**
+     * Gets the y coordinate of the upper left corner of the tile
+     * 
+     * @return  The y coordinate of the upper left corner in int form
+     */
+    public int getY()
+    {
+        return (int)(tile.getY());
+    }
+    
+    /**
      * Returns the ID of the tile
      * 
      * @return  The ID of the tile

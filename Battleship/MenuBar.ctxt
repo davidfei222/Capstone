@@ -1,9 +1,9 @@
 #BlueJ class context
-comment0.params=
-comment0.target=MenuBar()
+comment0.params=player
+comment0.target=MenuBar(PlayerGridPanel)
 comment0.text=\r\n\ Constructor\ for\ the\ menu\ before\ the\ game\ starts\r\n
-comment1.params=panel
-comment1.target=MenuBar(PlayerGridPanel)
+comment1.params=
+comment1.target=MenuBar()
 comment1.text=\r\n\ Constructor\ for\ the\ menu\ after\ the\ game\ starts\r\n
 comment2.params=y
 comment2.target=void\ sampleMethod(int)
