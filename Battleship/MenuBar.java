@@ -20,7 +20,7 @@ public class MenuBar extends JPanel
     //JLabels for start of game messages
     private JLabel startMsg;
     //Buttons for setting up the player grid
-    private JButton setBship, setDest, setPboat, reset;
+    private JButton startButton, setBship, setDest, setPboat, reset;
 
     /**
      * Constructor for the menu before the game starts
@@ -29,7 +29,7 @@ public class MenuBar extends JPanel
     {
         playerGrid = player;
         setSize(WIDTH, HEIGHT);
-        setBackground(Color.RED);
+        setBackground(null);
         ActionListener buttonListener = new ButtonListener();
         //Layout manager
         GridLayout layout = new GridLayout(4,2);
@@ -37,13 +37,16 @@ public class MenuBar extends JPanel
         layout.setVgap(10);
         setLayout(layout);
         //Label for start message
-        startMsg = new JLabel("Set your ships to start the game", SwingConstants.CENTER);
+        startMsg = new JLabel("Place ships on grid by clicking on tiles", SwingConstants.CENTER);
         add(startMsg);
         //Filler box
-        JPanel filler = new JPanel();
-        filler.setBackground(Color.RED);
-        add(filler);
+        //Panel filler = new JPanel();
+        //filler.setBackground(Color.RED);
+        //add(filler);
         //Buttons to be added
+        startButton = new JButton("Start game");
+        startButton.addActionListener(buttonListener);
+        add(startButton);
         setBship = new JButton("Set battleship");
         setBship.addActionListener(buttonListener);
         add(setBship);        
@@ -58,10 +61,10 @@ public class MenuBar extends JPanel
         add(reset);
         //More filler boxes
         JPanel filler2 = new JPanel();
-        filler2.setBackground(Color.RED);
+        filler2.setBackground(null);
         add(filler2);
         JPanel filler3 = new JPanel();
-        filler3.setBackground(Color.RED);
+        filler3.setBackground(null);
         add(filler3);
     }
     
