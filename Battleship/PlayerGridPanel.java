@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.Math;
 
 /**
  * Panel for the player that holds the tile grid with the ocean and ships on it
@@ -18,7 +19,7 @@ public class PlayerGridPanel extends JPanel
     private int offsetx, offsety;
     //2D array for all the tiles in the grid
     private Tile[][] tiles;
-    //Array for a battleship, destroyer and patrol boat tiles
+    //Array containing references to battleship, destroyer and patrol boat tiles
     private Tile[] battleship, destroyer, pboat;
     //Counts for the length of the battleship, destroyer, and patrol boat arrays
     private int bshipL, destL, pboatL;
@@ -57,7 +58,7 @@ public class PlayerGridPanel extends JPanel
         pboatSet = false;
         addMouseListener(new ShipSetListener());
     }
-    
+
     /**
      * Resets all of the tiles on the grid
      */
@@ -79,7 +80,7 @@ public class PlayerGridPanel extends JPanel
         pboatI = 0;
         repaint();
     }
-    
+
     /**
      * Sets the ship that is currently being placed, controlled by buttons on MenuBar
      * 
@@ -89,7 +90,77 @@ public class PlayerGridPanel extends JPanel
     {
         currentShip = current;
     }
-        
+
+    /**
+     * Method to set the battleship tiles randomly in a random quadrant of the board
+     */
+    public void setBattleship()
+    {
+        int randomRow = (int) Math.random()*tiles.length;
+        int randomCol = (int) Math.random()*tiles[0].length;
+        while(tiles[randomRow][randomCol].getID() != 0)
+        {
+            randomRow = (int) Math.random()*tiles.length;
+            randomCol = (int) Math.random()*tiles[0].length;
+        }
+        //tiles[randomRow][randomCol] = new ShipTile(tile.getX(), tile.getY(), Color.GRAY, 1);
+        //0 = north, 1 = south, 2 = west, 3 = east
+        int direction = (int) Math.random()*4;
+        if(direction == 0)
+        {
+            int currentI = 0;
+            if(direction == 0)
+            {
+                for(int i = 0; i<battleship.length; i++)
+                {
+                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
+                    randomRow--;
+                }
+            }
+            else if(direction == 1)
+            {
+                for(int i = 0; i<battleship.length; i++)
+                {
+                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
+                    randomRow++;
+                }
+            }
+            else if(direction == 2)
+            {
+                for(int i = 0; i<battleship.length; i++)
+                {
+                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
+                    randomCol--;
+                }
+            }
+            else if(direction == 3)
+            {
+                for(int i = 0; i<battleship.length; i++)
+                {
+                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
+                    randomCol++;
+                }
+            }
+        }   
+
+    }
+
+    /**
+     * Method to set the destroyer tiles randomly in a random quadrant of the board
+     */
+    public void setDestroyer()
+    {
+
+    }
+
+    /**
+     * Method to set the patrol boat tiles randomly in a random quadrant of the board
+     */
+    public void setPboat()
+    {
+
+    }
+
     /**
      * Draws all of GridPanel's components in
      * 
@@ -140,7 +211,7 @@ public class PlayerGridPanel extends JPanel
                             pboatI++;
                         }
                     }
-                    
+
                 }
             }
             repaint();

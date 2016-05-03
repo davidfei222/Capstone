@@ -21,31 +21,6 @@ public class ComputerGridPanel extends PlayerGridPanel
     }
     
     /**
-     * Method to set the battleship tiles for the computer player
-     */
-    public void setBattleship()
-    {
-
-    }
-
-    /**
-     * Method to set the destroyer tiles for the computer player
-     */
-    public void setDestroyer()
-    {
-
-    }
-
-    /**
-     * Method to set the patrol boat tiles for the computer player
-     */
-    public void setPboat()
-    {
-
-    }
-
-    
-    /**
      * An example of a method - replace this comment with your own
      * 
      * @param  y   a sample parameter for a method

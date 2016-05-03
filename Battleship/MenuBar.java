@@ -43,22 +43,22 @@ public class MenuBar extends JPanel
         //Panel filler = new JPanel();
         //filler.setBackground(Color.RED);
         //add(filler);
-        //Buttons to be added
+        //Buttons to be added        
+        setBship = new JButton("Set battleship");
+        setBship.addActionListener(buttonListener);
+        add(setBship);
         startButton = new JButton("Start game");
         startButton.addActionListener(buttonListener);
         add(startButton);
-        setBship = new JButton("Set battleship");
-        setBship.addActionListener(buttonListener);
-        add(setBship);        
         setDest = new JButton("Set destroyer");
         setDest.addActionListener(buttonListener);
-        add(setDest);        
-        setPboat = new JButton("Set patrol boat");
-        setPboat.addActionListener(buttonListener);
-        add(setPboat);        
+        add(setDest);                       
         reset = new JButton("Reset all tiles");
         reset.addActionListener(buttonListener);
         add(reset);
+        setPboat = new JButton("Set patrol boat");
+        setPboat.addActionListener(buttonListener);
+        add(setPboat); 
         //More filler boxes
         JPanel filler2 = new JPanel();
         filler2.setBackground(null);
