@@ -92,10 +92,11 @@ public class PlayerGridPanel extends JPanel
     }
 
     /**
-     * Method to set the battleship tiles randomly in a random quadrant of the board
+     * Method to set the battleship's tiles randomly
+     * 
      */
     public void setBattleship()
-    {
+    {   
         int randomRow = (int) Math.random()*tiles.length;
         int randomCol = (int) Math.random()*tiles[0].length;
         while(tiles[randomRow][randomCol].getID() != 0)
@@ -103,61 +104,80 @@ public class PlayerGridPanel extends JPanel
             randomRow = (int) Math.random()*tiles.length;
             randomCol = (int) Math.random()*tiles[0].length;
         }
-        //tiles[randomRow][randomCol] = new ShipTile(tile.getX(), tile.getY(), Color.GRAY, 1);
+        int startRow = randomRow;
+        int startCol = randomCol;
         //0 = north, 1 = south, 2 = west, 3 = east
         int direction = (int) Math.random()*4;
+        //Track how many tiles of the ship have been set
+        int currentI = 0;
         if(direction == 0)
         {
-            int currentI = 0;
-            if(direction == 0)
+            while(randomRow >= 0 && tiles[randomRow-1][randomCol].getID()>0 && currentI < battleship.length)
             {
-                for(int i = 0; i<battleship.length; i++)
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                battleship[currentI] = tiles[randomRow][randomCol];
+                randomRow--;
+                currentI++;
+            }
+            int offsetRow = startRow+1;
+            if(currentI < battleship.length)
+            {
+                for(int i = currentI; i < battleship.length; i++)
                 {
-                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
-                    randomRow--;
+                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                    battleship[i] = tiles[offsetRow][randomCol];
+                    offsetRow++;
                 }
             }
-            else if(direction == 1)
+        }
+        else if(direction == 1)
+        {
+            while(randomRow <= tiles.length-1 && tiles[randomRow-1][randomCol].getID()>0 && currentI < battleship.length)
             {
-                for(int i = 0; i<battleship.length; i++)
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                battleship[currentI] = tiles[randomRow][randomCol];
+                randomRow++;
+                currentI++;
+            }
+            int offsetRow = startRow-1;
+            if(currentI < battleship.length)
+            {
+                for(int i = currentI; i < battleship.length; i++)
                 {
-                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
-                    randomRow++;
+                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                    battleship[i] = tiles[offsetRow][randomCol];
+                    offsetRow--;
                 }
             }
-            else if(direction == 2)
+        }
+        else if(direction == 2)
+        {
+            while(randomRow >= 0 && tiles[randomRow-1][randomCol].getID()>0 && currentI < battleship.length)
             {
-                for(int i = 0; i<battleship.length; i++)
-                {
-                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
-                    randomCol--;
-                }
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                battleship[currentI] = tiles[randomRow][randomCol];
+                randomCol--;
+                currentI++;
             }
-            else if(direction == 3)
+            int offsetCol = startCol+1;
+            if(currentI < battleship.length)
             {
-                for(int i = 0; i<battleship.length; i++)
+                for(int i = currentI; i < battleship.length; i++)
                 {
-                    tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.GRAY, 1);
+                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                    battleship[i] = tiles[offsetRow][randomCol];
                     randomCol++;
                 }
             }
-        }   
-
-    }
-
-    /**
-     * Method to set the destroyer tiles randomly in a random quadrant of the board
-     */
-    public void setDestroyer()
-    {
-
-    }
-
-    /**
-     * Method to set the patrol boat tiles randomly in a random quadrant of the board
-     */
-    public void setPboat()
-    {
+        }
+        else if(direction == 3)
+        {
+            for(int i = 0; i<battleship.length; i++)
+            {
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLUE, 1);
+                randomCol++;
+            }
+        }
 
     }
 
