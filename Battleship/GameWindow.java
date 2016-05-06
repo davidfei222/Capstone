@@ -38,6 +38,14 @@ public class GameWindow extends JFrame
     }
     
     /**
+     * Adds the computer player's grid to the game window
+     */
+    public static void addGrid(PlayerGridPanel grid)
+    {
+        //add(grid);
+    }
+    
+    /**
      * Main method to run everything
      */
     public static void main(String[]args)

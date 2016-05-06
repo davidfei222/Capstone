@@ -106,6 +106,13 @@ public class MenuBar extends JPanel
             {
                 playerGrid.resetTiles();
             }
+            else if(e.getActionCommand().equals("Start game"))
+            {
+                if(playerGrid.isReady())
+                {
+                    
+                }
+            }
             
         }
     }

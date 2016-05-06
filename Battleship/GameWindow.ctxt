@@ -2,7 +2,10 @@
 comment0.params=
 comment0.target=GameWindow()
 comment0.text=\r\n\ Default\ constructor\ for\ objects\ of\ class\ GameWindow,\ \r\n\ contains\ tile\ grid\ and\ player\ interface\r\n
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment1.text=\r\n\ Main\ method\ to\ run\ everything\r\n
-numComments=2
+comment1.params=grid
+comment1.target=void\ addGrid(PlayerGridPanel)
+comment1.text=\r\n\ Adds\ the\ computer\ player's\ grid\ to\ the\ game\ window\r\n
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment2.text=\r\n\ Main\ method\ to\ run\ everything\r\n
+numComments=3

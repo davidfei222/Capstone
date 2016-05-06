@@ -23,8 +23,6 @@ public class PlayerGridPanel extends JPanel
     private Tile[] battleship, destroyer, pboat;
     //Counts for the length of the battleship, destroyer, and patrol boat arrays
     private int bshipL, destL, pboatL;
-    //Boolean to check if each of the ships has been set yet
-    private boolean bshipSet, destSet, pboatSet;
     //Variable controlling what ship is currently being set (based on table of ship ID values)
     private int currentShip;
     //Indexing for the ship arrays (prevent out of bounds exceptions)
@@ -53,9 +51,6 @@ public class PlayerGridPanel extends JPanel
         destroyer = new ShipTile[3];
         pboat = new ShipTile[2];
         currentShip = 0;
-        bshipSet = false;
-        destSet = false;
-        pboatSet = false;
         addMouseListener(new ShipSetListener());
     }
 
@@ -94,8 +89,9 @@ public class PlayerGridPanel extends JPanel
     /**
      * Method to set the battleship's tiles randomly
      * 
+     * @param   color   Color of the tiles for the ship
      */
-    public void setBattleship()
+    public void setBattleship(Color color)
     {   
         int randomRow = (int) Math.random()*tiles.length;
         int randomCol = (int) Math.random()*tiles[0].length;
@@ -114,17 +110,17 @@ public class PlayerGridPanel extends JPanel
         {
             while(randomRow >= 0 && tiles[randomRow-1][randomCol].getID()>0 && currentI < battleship.length)
             {
-                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
                 battleship[currentI] = tiles[randomRow][randomCol];
                 randomRow--;
                 currentI++;
             }
             int offsetRow = startRow+1;
-            if(currentI < battleship.length)
+            if(currentI < battleship.length-1)
             {
                 for(int i = currentI; i < battleship.length; i++)
                 {
-                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
                     battleship[i] = tiles[offsetRow][randomCol];
                     offsetRow++;
                 }
@@ -132,19 +128,19 @@ public class PlayerGridPanel extends JPanel
         }
         else if(direction == 1)
         {
-            while(randomRow <= tiles.length-1 && tiles[randomRow-1][randomCol].getID()>0 && currentI < battleship.length)
+            while(randomRow <= tiles.length-1 && tiles[randomRow+1][randomCol].getID()>0 && currentI < battleship.length)
             {
-                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
                 battleship[currentI] = tiles[randomRow][randomCol];
                 randomRow++;
                 currentI++;
             }
             int offsetRow = startRow-1;
-            if(currentI < battleship.length)
+            if(currentI < battleship.length-1)
             {
                 for(int i = currentI; i < battleship.length; i++)
                 {
-                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
                     battleship[i] = tiles[offsetRow][randomCol];
                     offsetRow--;
                 }
@@ -152,35 +148,75 @@ public class PlayerGridPanel extends JPanel
         }
         else if(direction == 2)
         {
-            while(randomRow >= 0 && tiles[randomRow-1][randomCol].getID()>0 && currentI < battleship.length)
+            while(randomCol >= 0 && tiles[randomRow][randomCol-1].getID()>0 && currentI < battleship.length)
             {
-                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
                 battleship[currentI] = tiles[randomRow][randomCol];
                 randomCol--;
                 currentI++;
             }
             int offsetCol = startCol+1;
-            if(currentI < battleship.length)
+            if(currentI < battleship.length-1)
             {
                 for(int i = currentI; i < battleship.length; i++)
                 {
-                    tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLACK, 1);
-                    battleship[i] = tiles[offsetRow][randomCol];
-                    randomCol++;
+                    tiles[randomRow][offsetCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
+                    battleship[i] = tiles[randomRow][offsetCol];
+                    offsetCol++;
                 }
             }
         }
         else if(direction == 3)
         {
-            for(int i = 0; i<battleship.length; i++)
+            while(randomCol <= tiles[0].length-1 && tiles[randomRow][randomCol+1].getID()>0 && currentI < battleship.length)
             {
-                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), Color.BLUE, 1);
+                tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
+                battleship[currentI] = tiles[randomRow][randomCol];
                 randomCol++;
+                currentI++;
+            }
+            int offsetCol = startCol-1;
+            if(currentI < battleship.length-1)
+            {
+                for(int i = currentI; i < battleship.length; i++)
+                {
+                    tiles[randomRow][offsetCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 1);
+                    battleship[i] = tiles[randomRow][offsetCol];
+                    offsetCol--;
+                }
             }
         }
 
     }
-
+    
+    /**
+     * Method to set the destroyer tiles randomly
+     */
+    public void setDestroyer()
+    {
+    }
+    
+    /**
+     * Method to set the patrol boat tiles randomly
+     */
+    public void setPboat()
+    {
+    }
+    
+    /**
+     * Checks to see if all the ships are set and the player is ready to start
+     * 
+     * @return  True if ready and false if not
+     */
+    public boolean isReady()
+    {
+        if(bshipI>3 && destI>2 && pboatI>1)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     /**
      * Draws all of GridPanel's components in
      * 
