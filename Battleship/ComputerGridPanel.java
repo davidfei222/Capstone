@@ -13,7 +13,7 @@ public class ComputerGridPanel extends PlayerGridPanel
      */
     public ComputerGridPanel()
     {
-        super();
+        super(false);
     }
     
 }

@@ -31,8 +31,10 @@ public class PlayerGridPanel extends JPanel
 
     /**
      * Constructor for objects of class GridPanel
+     * 
+     * @param   player  Checks if the panel belongs to the player or not to decide which listener to assign
      */
-    public PlayerGridPanel()
+    public PlayerGridPanel(boolean player)
     {
         setSize(WIDTH, HEIGHT);
         tiles = new Tile[10][10];
@@ -52,7 +54,10 @@ public class PlayerGridPanel extends JPanel
         destroyer = new ShipTile[3];
         pboat = new ShipTile[2];
         currentShip = 0;
-        addMouseListener(new ShipSetListener());
+        if(player)
+        {
+            addMouseListener(new ShipSetListener());
+        }
     }
 
     /**
@@ -139,7 +144,7 @@ public class PlayerGridPanel extends JPanel
                             nonOceanTiles++;
                         }                    
                     }
-                    
+
                     if(nonOceanTiles > 0)
                     {
                         randomRow = dice1.nextInt(tiles.length);
@@ -174,27 +179,6 @@ public class PlayerGridPanel extends JPanel
                 randomRow--;
                 currentI++;
             }
-            //             int offsetRow = startRow+1;
-            //             if(currentI < battleship.length-1)
-            //             {
-            //                 for(int i = currentI; i < battleship.length; i++)
-            //                 {
-            //                     tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, id);
-            //                     if(id == 1)
-            //                     {
-            //                         battleship[currentI] = tiles[randomRow][randomCol];
-            //                     }
-            //                     else if(id == 2)
-            //                     {
-            //                         destroyer[currentI] = tiles[randomRow][randomCol];
-            //                     }
-            //                     else
-            //                     {
-            //                         pboat[currentI] = tiles[randomRow][randomCol];
-            //                     }
-            //                     offsetRow++;
-            //                 }
-            //             }
         }
         else if(direction == 1)
         {
@@ -214,7 +198,7 @@ public class PlayerGridPanel extends JPanel
                             nonOceanTiles++;
                         }                    
                     }
-                    
+
                     if(nonOceanTiles > 0)
                     {
                         randomRow = dice1.nextInt(tiles.length);
@@ -230,7 +214,7 @@ public class PlayerGridPanel extends JPanel
                 }
 
             }
-            
+
             for(int i = 0; i<length; i++)
             {
                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, id);
@@ -268,7 +252,7 @@ public class PlayerGridPanel extends JPanel
                             nonOceanTiles++;
                         }                    
                     }
-                    
+
                     if(nonOceanTiles > 0)
                     {
                         randomCol = dice1.nextInt(tiles[0].length);
@@ -284,7 +268,7 @@ public class PlayerGridPanel extends JPanel
                 }
 
             }
-            
+
             for(int i = 0; i<length; i++)
             {
                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, id);
@@ -322,7 +306,7 @@ public class PlayerGridPanel extends JPanel
                             nonOceanTiles++;
                         }                    
                     }
-                    
+
                     if(nonOceanTiles > 0)
                     {
                         randomCol = dice1.nextInt(tiles[0].length);
@@ -338,7 +322,7 @@ public class PlayerGridPanel extends JPanel
                 }
 
             }
-            
+
             for(int i = 0; i<length; i++)
             {
                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, id);
@@ -360,209 +344,6 @@ public class PlayerGridPanel extends JPanel
         }
         repaint();
     }
-
-    //     /**
-    //      * Sets the destroyer's tiles randomly
-    //      * 
-    //      * @param   color   The color of the tiles for the ship
-    //      */
-    //     public void setDestroyer(Color color)
-    //     {
-    //         Random dice1 = new Random();
-    //         int randomRow = dice1.nextInt(tiles.length);
-    //         int randomCol = dice1.nextInt(tiles[0].length);
-    //         while(tiles[randomRow][randomCol].getID() != 0)
-    //         {
-    //             randomRow = dice1.nextInt(tiles.length);
-    //             randomCol = dice1.nextInt(tiles[0].length);
-    //         }
-    //         int startRow = randomRow;
-    //         int startCol = randomCol;
-    //         //0 = north, 1 = south, 2 = west, 3 = east
-    //         int direction = dice1.nextInt(4);
-    //         //Track how many tiles of the ship have been set
-    //         int currentI = 0;
-    //         if(direction == 0)
-    //         {
-    //             while(randomRow > 0 && tiles[randomRow-1][randomCol].getID()>0 && currentI < destroyer.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                 destroyer[currentI] = tiles[randomRow][randomCol];
-    //                 randomRow--;
-    //                 currentI++;
-    //             }
-    //             int offsetRow = startRow+1;
-    //             if(currentI < destroyer.length-1)
-    //             {
-    //                 for(int i = currentI; i < destroyer.length; i++)
-    //                 {
-    //                     tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                     destroyer[i] = tiles[offsetRow][randomCol];
-    //                     offsetRow++;
-    //                 }
-    //             }
-    //         }
-    //         else if(direction == 1)
-    //         {
-    //             while(randomRow < tiles.length-1 && tiles[randomRow+1][randomCol].getID()>0 && currentI < destroyer.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                 destroyer[currentI] = tiles[randomRow][randomCol];
-    //                 randomRow++;
-    //                 currentI++;
-    //             }
-    //             int offsetRow = startRow-1;
-    //             if(currentI < destroyer.length-1)
-    //             {
-    //                 for(int i = currentI; i < destroyer.length; i++)
-    //                 {
-    //                     tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                     destroyer[i] = tiles[offsetRow][randomCol];
-    //                     offsetRow--;
-    //                 }
-    //             }
-    //         }
-    //         else if(direction == 2)
-    //         {
-    //             while(randomCol > 0 && tiles[randomRow][randomCol-1].getID()>0 && currentI < destroyer.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                 destroyer[currentI] = tiles[randomRow][randomCol];
-    //                 randomCol--;
-    //                 currentI++;
-    //             }
-    //             int offsetCol = startCol+1;
-    //             if(currentI < destroyer.length-1)
-    //             {
-    //                 for(int i = currentI; i < destroyer.length; i++)
-    //                 {
-    //                     tiles[randomRow][offsetCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                     destroyer[i] = tiles[randomRow][offsetCol];
-    //                     offsetCol++;
-    //                 }
-    //             }
-    //         }
-    //         else if(direction == 3)
-    //         {
-    //             while(randomCol < tiles[0].length-1 && tiles[randomRow][randomCol+1].getID()>0 && currentI < destroyer.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                 destroyer[currentI] = tiles[randomRow][randomCol];
-    //                 randomCol++;
-    //                 currentI++;
-    //             }
-    //             int offsetCol = startCol-1;
-    //             if(currentI < destroyer.length-1)
-    //             {
-    //                 for(int i = currentI; i < destroyer.length; i++)
-    //                 {
-    //                     tiles[randomRow][offsetCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 2);
-    //                     destroyer[i] = tiles[randomRow][offsetCol];
-    //                     offsetCol--;                    
-    //                 }
-    //             }
-    //         }
-    //         //repaint();
-    //     }
-    // 
-    //     /**
-    //      * Sets the patrol boat's tiles randomly
-    //      * 
-    //      * @param   color   The color of the tiles for the ship
-    //      */
-    //     public void setPboat(Color color)
-    //     {
-    //         Random dice1 = new Random();
-    //         int randomRow = dice1.nextInt(tiles.length);
-    //         int randomCol = dice1.nextInt(tiles[0].length);
-    //         while(tiles[randomRow][randomCol].getID() != 0)
-    //         {
-    //             randomRow = dice1.nextInt(tiles.length);
-    //             randomCol = dice1.nextInt(tiles[0].length);
-    //         }
-    //         int startRow = randomRow;
-    //         int startCol = randomCol;
-    //         //0 = north, 1 = south, 2 = west, 3 = east
-    //         int direction = dice1.nextInt(4);
-    //         //Track how many tiles of the ship have been set
-    //         int currentI = 0;
-    //         if(direction == 0)
-    //         {
-    //             while(randomRow > 0 && tiles[randomRow-1][randomCol].getID()>0 && currentI < pboat.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                 pboat[currentI] = tiles[randomRow][randomCol];
-    //                 randomRow--;
-    //                 currentI++;
-    //             }
-    //             int offsetRow = startRow+1;
-    //             if(currentI < pboat.length-1)
-    //             {
-    //                 for(int i = currentI; i < pboat.length; i++)
-    //                 {
-    //                     tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                     pboat[i] = tiles[offsetRow][randomCol];
-    //                     offsetRow++;
-    //                 }
-    //             }
-    //         }
-    //         else if(direction == 1)
-    //         {
-    //             while(randomRow < tiles.length-1 && tiles[randomRow+1][randomCol].getID()>0 && currentI < pboat.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                 pboat[currentI] = tiles[randomRow][randomCol];
-    //                 randomRow++;
-    //                 currentI++;
-    //             }
-    //             int offsetRow = startRow-1;
-    //             while(offsetCol >= 0 && currentI < pboat.length-1)
-    //             {
-    //                 tiles[offsetRow][randomCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                 pboat[i] = tiles[offsetRow][randomCol];
-    //                 offsetRow--;
-    //             }
-    // 
-    //         }
-    //         else if(direction == 2)
-    //         {
-    //             while(randomCol > 0 && tiles[randomRow][randomCol-1].getID()>0 && currentI < pboat.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                 pboat[currentI] = tiles[randomRow][randomCol];
-    //                 randomCol--;
-    //                 currentI++;
-    //             }
-    //             int offsetCol = startCol+1;
-    //             while(offsetCol >= 0 && currentI < pboat.length-1)
-    //             {
-    //                 tiles[randomRow][offsetCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                 pboat[i] = tiles[randomRow][offsetCol];
-    //                 offsetCol++;
-    //             }
-    //         }
-    // 
-    //         else if(direction == 3)
-    //         {
-    //             while(randomCol < tiles[0].length-1 && tiles[randomRow][randomCol+1].getID()>0 && currentI < pboat.length)
-    //             {
-    //                 tiles[randomRow][randomCol] =  new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                 pboat[currentI] = tiles[randomRow][randomCol];
-    //                 randomCol++;
-    //                 currentI++;
-    //             }
-    //             int offsetCol = startCol-1;
-    //             while(offsetCol >= 0 && currentI < pboat.length-1)
-    //             {
-    //                 tiles[randomRow][offsetCol] = new ShipTile(tiles[randomRow][randomCol].getX(), tiles[randomRow][randomCol].getY(), color, 3);
-    //                 pboat[currentI] = tiles[randomRow][offsetCol];
-    //                 offsetCol--;
-    //                 currentI++;
-    //             }
-    // 
-    //         }
-    //         //repaint();
-    //     }
 
     /**
      * Checks to see if all the ships are set and the player is ready to start

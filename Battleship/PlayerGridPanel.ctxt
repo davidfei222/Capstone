@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.params=
-comment0.target=PlayerGridPanel()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ GridPanel\r\n
+comment0.params=player
+comment0.target=PlayerGridPanel(boolean)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ GridPanel\r\n\ \r\n\ @param\ \ \ player\ \ Checks\ if\ the\ panel\ belongs\ to\ the\ player\ or\ not\ to\ decide\ which\ listener\ to\ assign\r\n
 comment1.params=
 comment1.target=void\ resetTiles()
 comment1.text=\r\n\ Resets\ all\ of\ the\ tiles\ on\ the\ grid\r\n

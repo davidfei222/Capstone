@@ -31,7 +31,7 @@ public class GameWindow extends JFrame
         setSize(WIDTH, HEIGHT);
         setTitle("Battleship");
         setLayout(null);
-        playerGrid = new PlayerGridPanel();
+        playerGrid = new PlayerGridPanel(true);
         add(playerGrid);
         playerGrid.setBounds(OFFSET, OFFSET-50, playerGrid.getSize().width, playerGrid.getSize().height);
         computerGrid = new ComputerGridPanel();
