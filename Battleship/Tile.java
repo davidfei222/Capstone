@@ -85,7 +85,7 @@ abstract public class Tile
      * 
      * @return   True if the tile is hit, false if not
      */
-    public boolean getState()
+    public boolean isHit()
     {
         return this.state;
     }
@@ -108,6 +108,16 @@ abstract public class Tile
     public int getY()
     {
         return (int)(tile.getY());
+    }
+    
+    /**
+     * Sets the color of the tile
+     * 
+     * @param   color   The new color to be set
+     */
+    public void setColor(Color color)
+    {
+        this.background = color;
     }
     
     /**

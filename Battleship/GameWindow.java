@@ -17,6 +17,8 @@ public class GameWindow extends JFrame
     private static final int OFFSET = 150;
     // The player's grid
     PlayerGridPanel playerGrid;
+    // The computer's grid
+    ComputerGridPanel computerGrid;
     // The menu bar along the top
     MenuBar menu;
 
@@ -32,7 +34,10 @@ public class GameWindow extends JFrame
         playerGrid = new PlayerGridPanel();
         add(playerGrid);
         playerGrid.setBounds(OFFSET, OFFSET-50, playerGrid.getSize().width, playerGrid.getSize().height);
-        menu = new MenuBar(playerGrid);
+        computerGrid = new ComputerGridPanel();
+        add(computerGrid);
+        computerGrid.setBounds(WIDTH-OFFSET-computerGrid.getSize().width, OFFSET-50, computerGrid.getSize().width, playerGrid.getSize().height);
+        menu = new MenuBar(playerGrid, computerGrid);
         add(menu);
         menu.setBounds(WIDTH/2-menu.getSize().width/2, HEIGHT-150, menu.getSize().width, menu.getSize().height);
     }

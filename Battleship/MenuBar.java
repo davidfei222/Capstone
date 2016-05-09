@@ -15,8 +15,10 @@ public class MenuBar extends JPanel
     private static final int WIDTH = 500;
     //Height of the bar
     private static final int HEIGHT = 130;
-    //Grid that the menu is controlling
+    //Player grid that is being controlled
     PlayerGridPanel playerGrid;
+    //Computer grid that is being controlled
+    ComputerGridPanel computerGrid;
     //JLabels for start of game messages
     private JLabel startMsg;
     //Buttons for setting up the player grid
@@ -24,10 +26,15 @@ public class MenuBar extends JPanel
 
     /**
      * Constructor for the menu before the game starts
+     * 
+     * @param   player  The player's grid
+     * @param   computer    The computer player's grid
+     * @param   game    The game window
      */
-    public MenuBar(PlayerGridPanel player)
+    public MenuBar(PlayerGridPanel player, ComputerGridPanel computer)
     {
         playerGrid = player;
+        computerGrid = computer;
         setSize(WIDTH, HEIGHT);
         setBackground(null);
         ActionListener buttonListener = new ButtonListener();
@@ -67,7 +74,7 @@ public class MenuBar extends JPanel
         filler3.setBackground(null);
         add(filler3);
     }
-    
+
     /**
      * Constructor for the menu after the game starts
      */
@@ -75,17 +82,6 @@ public class MenuBar extends JPanel
     {
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public void sampleMethod(int y)
-    {
-        
-    }
-    
     public class ButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -110,10 +106,12 @@ public class MenuBar extends JPanel
             {
                 if(playerGrid.isReady())
                 {
-                    
+                    computerGrid.setShip(Color.BLACK, 1);
+                    computerGrid.setShip(Color.BLACK, 2);
+                    computerGrid.setShip(Color.BLACK, 3);
                 }
             }
-            
+
         }
     }
 }
