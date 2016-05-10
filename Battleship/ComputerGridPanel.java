@@ -1,3 +1,5 @@
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * The grid panel for the computer player.  Almost exactly the same as the player grid except it 
@@ -14,6 +16,24 @@ public class ComputerGridPanel extends PlayerGridPanel
     public ComputerGridPanel()
     {
         super(false);
+        addMouseListener(new PlayerMoveMaker());
     }
+    
+    public class PlayerMoveMaker implements MouseListener
+    {
+        public void mouseClicked(MouseEvent e)
+        {
+            int x = e.getX();
+            int y = e.getY();
+        }
+
+        public void mouseEntered(MouseEvent e){}
+
+        public void mouseExited(MouseEvent e){}
+
+        public void mousePressed(MouseEvent e){}
+
+        public void mouseReleased(MouseEvent e){}
+    }   
     
 }

@@ -28,6 +28,8 @@ public class PlayerGridPanel extends JPanel
     private int currentShip;
     //Indexing for the ship arrays (prevent out of bounds exceptions)
     private int bshipI, destI, pboatI = 0;
+    //Boolean indicating whether the player has started or not
+    private boolean isStarted;
 
     /**
      * Constructor for objects of class GridPanel
@@ -58,6 +60,7 @@ public class PlayerGridPanel extends JPanel
         {
             addMouseListener(new ShipSetListener());
         }
+        isStarted = false;
     }
 
     /**
@@ -134,7 +137,7 @@ public class PlayerGridPanel extends JPanel
             //If not, picks a new location and checks again
             while(readyToSet == false)
             {
-                if(randomRow-length>=0)
+                if(randomRow-length>=length)
                 {
                     for(int i = 0; i<length-1; i++)
                     {
@@ -188,7 +191,7 @@ public class PlayerGridPanel extends JPanel
             //If not, picks a new location and checks again
             while(readyToSet == false)
             {
-                if(randomRow+length < tiles.length)
+                if(randomRow+length < tiles.length-length)
                 {
                     for(int i = 0; i<length-1; i++)
                     {
@@ -242,7 +245,7 @@ public class PlayerGridPanel extends JPanel
             //If not, picks a new location and checks again
             while(readyToSet == false)
             {
-                if(randomCol-length>=0)
+                if(randomCol-length>=length)
                 {
                     for(int i = 0; i<length-1; i++)
                     {
@@ -296,7 +299,7 @@ public class PlayerGridPanel extends JPanel
             //If not, picks a new location and checks again
             while(readyToSet == false)
             {
-                if(randomCol+length < tiles[0].length)
+                if(randomCol+length < tiles[0].length-length)
                 {
                     for(int i = 0; i<length-1; i++)
                     {
@@ -358,7 +361,25 @@ public class PlayerGridPanel extends JPanel
         }
         return false;
     }
-
+    
+    /**
+     * Modifies the player's state in the game
+     */
+    public void setGameState(boolean state)
+    {
+        isStarted = state;
+    }
+    
+    /**
+     * Checks to see if the human player has started the game
+     * 
+     * @return  True if started and false if not
+     */
+    public boolean inGame()
+    {
+        return isStarted;
+    }   
+        
     /**
      * Draws all of GridPanel's components in
      * 

@@ -109,6 +109,7 @@ public class MenuBar extends JPanel
                     computerGrid.setShip(Color.BLACK, 1);
                     computerGrid.setShip(Color.BLACK, 2);
                     computerGrid.setShip(Color.BLACK, 3);
+                    computerGrid.setGameState(true);
                 }
             }
 
