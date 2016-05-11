@@ -440,10 +440,38 @@ public class PlayerGridPanel extends JPanel
 
     /**
      * Checks to see if the player has lost all of their ships
+     * 
+     * @return  True if lost, false if not
      */
-    public void hasLost()
+    public boolean hasLost()
     {
-
+        int hitShipTiles = 0;
+        for(Tile tile:battleship)
+        {
+            if(tile.isHit())
+            {
+                hitShipTiles++;
+            }
+        }
+        for(Tile tile:destroyer)
+        {
+            if(tile.isHit())
+            {
+                hitShipTiles++;
+            }
+        }
+        for(Tile tile:pboat)
+        {
+            if(tile.isHit())
+            {
+                hitShipTiles++;
+            }
+        }
+        if(hitShipTiles == 9)
+        {
+            return true;
+        }
+        return false;
     }
 
     /**

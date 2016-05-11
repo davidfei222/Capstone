@@ -48,6 +48,7 @@ public class GameWindow extends JFrame
     public static void main(String[]args)
     {
         GameWindow game = new GameWindow();
+        game.setDefaultCloseOperation(EXIT_ON_CLOSE);
         game.setVisible(true);
     }
 
@@ -59,14 +60,22 @@ public class GameWindow extends JFrame
             {
                 int x = e.getX();
                 int y = e.getY();
-                boolean madeMove = computerGrid.playerMove(x,y);
-                
+                boolean madeMove = computerGrid.playerMove(x,y);                
                 if(madeMove)
                 {
                     playerGrid.randomMove();
                 }   
                 playerGrid.repaint();
                 computerGrid.repaint();
+                if(playerGrid.hasLost())
+                {
+                    System.out.println("Computer player has won");
+                }
+                else if(computerGrid.hasLost())
+                {
+                    System.out.println("Human player has won");
+                }
+                
             }
 
         }
