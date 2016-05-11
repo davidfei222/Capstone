@@ -99,6 +99,7 @@ public class PlayerGridPanel extends JPanel
      * Sets a specified ship's tiles randomly
      * 
      * @param   color   Color of the tiles for the ships
+     * @param   id  The ID value of the ship
      */
     public void setShip(Color color, int id)
     {   
@@ -361,7 +362,7 @@ public class PlayerGridPanel extends JPanel
         }
         return false;
     }
-    
+
     /**
      * Modifies the player's state in the game
      */
@@ -369,7 +370,7 @@ public class PlayerGridPanel extends JPanel
     {
         isStarted = state;
     }
-    
+
     /**
      * Checks to see if the human player has started the game
      * 
@@ -379,7 +380,72 @@ public class PlayerGridPanel extends JPanel
     {
         return isStarted;
     }   
-        
+    
+    /**
+     * Has a player's grid randomly select a tile to be hit as a random move by the other player
+     * Updates the grid based on whether it was a ship or ocean tile hit
+     */
+    public void randomMove()
+    {
+        Random dice1 = new Random();
+        int randomRow = dice1.nextInt(tiles.length);
+        int randomCol = dice1.nextInt(tiles[0].length);
+        while(tiles[randomRow][randomCol].isHit())
+        {
+            randomRow = dice1.nextInt(tiles.length);
+            randomCol = dice1.nextInt(tiles[0].length);
+        }         
+        tiles[randomRow][randomCol].setState(true);
+        if(tiles[randomRow][randomCol].getID() != 0)
+        {
+            tiles[randomRow][randomCol].setColor(Color.ORANGE);
+        }
+        else
+        {
+            tiles[randomRow][randomCol].setColor(Color.BLACK);
+        }
+        repaint();
+    }
+
+    /**
+     * Makes a move for the player based on a tile clicked
+     * 
+     * @param   x   x coordinate of click
+     * @param   y   y coordinate of click
+     * @return   True if a correct move was made, false if otherwise
+     */
+    public boolean playerMove(int x, int y)
+    {
+        for(int a = 0; a<tiles.length; a++)
+        {
+            for(int b = 0; b<tiles[a].length; b++)
+            {
+                if(tiles[a][b].isInside(x,y)==true)
+                {
+                    tiles[a][b].setState(true);
+                    if(tiles[a][b].getID() != 0)
+                    {
+                        tiles[a][b].setColor(Color.ORANGE);
+                    }
+                    else
+                    {
+                        tiles[a][b].setColor(Color.BLACK);
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks to see if the player has lost all of their ships
+     */
+    public void hasLost()
+    {
+
+    }
+
     /**
      * Draws all of GridPanel's components in
      * 
@@ -444,4 +510,5 @@ public class PlayerGridPanel extends JPanel
 
         public void mouseReleased(MouseEvent e){}
     }
+  
 }

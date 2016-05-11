@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * The window that displays the game
@@ -15,10 +16,8 @@ public class GameWindow extends JFrame
     private static final int WIDTH = 1200;
     // Offset from the edges of the screen for grids
     private static final int OFFSET = 150;
-    // The player's grid
-    PlayerGridPanel playerGrid;
-    // The computer's grid
-    ComputerGridPanel computerGrid;
+    // The players' grids
+    PlayerGridPanel playerGrid, computerGrid;
     // The menu bar along the top
     MenuBar menu;
 
@@ -34,22 +33,15 @@ public class GameWindow extends JFrame
         playerGrid = new PlayerGridPanel(true);
         add(playerGrid);
         playerGrid.setBounds(OFFSET, OFFSET-50, playerGrid.getSize().width, playerGrid.getSize().height);
-        computerGrid = new ComputerGridPanel();
+        computerGrid = new PlayerGridPanel(false);
         add(computerGrid);
         computerGrid.setBounds(WIDTH-OFFSET-computerGrid.getSize().width, OFFSET-50, computerGrid.getSize().width, playerGrid.getSize().height);
         menu = new MenuBar(playerGrid, computerGrid);
         add(menu);
         menu.setBounds(WIDTH/2-menu.getSize().width/2, HEIGHT-150, menu.getSize().width, menu.getSize().height);
+        addMouseListener(new MoveMaker());
     }
-    
-    /**
-     * Adds the computer player's grid to the game window
-     */
-    public static void addGrid(PlayerGridPanel grid)
-    {
-        //add(grid);
-    }
-    
+
     /**
      * Main method to run everything
      */
@@ -58,4 +50,33 @@ public class GameWindow extends JFrame
         GameWindow game = new GameWindow();
         game.setVisible(true);
     }
+
+    public class MoveMaker implements MouseListener
+    {
+        public void mouseClicked(MouseEvent e)
+        {
+            if(playerGrid.inGame() && computerGrid.inGame())
+            {
+                int x = e.getX();
+                int y = e.getY();
+                boolean madeMove = computerGrid.playerMove(x,y);
+                
+                if(madeMove)
+                {
+                    playerGrid.randomMove();
+                }   
+                playerGrid.repaint();
+                computerGrid.repaint();
+            }
+
+        }
+
+        public void mouseEntered(MouseEvent e){}
+
+        public void mouseExited(MouseEvent e){}
+
+        public void mousePressed(MouseEvent e){}
+
+        public void mouseReleased(MouseEvent e){}
+    } 
 }

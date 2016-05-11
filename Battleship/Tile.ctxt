@@ -10,7 +10,7 @@ comment2.target=void\ setLocation(int,\ int)
 comment2.text=\r\n\ Sets\ the\ tile\ to\ a\ new\ location\r\n\ \r\n\ @param\ \ \ x\ \ \ New\ x\ coordinate\r\n\ @param\ \ \ y\ \ \ New\ y\ coordinate\r\n
 comment3.params=status
 comment3.target=void\ setState(boolean)
-comment3.text=\r\n\ Sets\ the\ state\ of\ the\ tile\r\n\r\n\ @param\ \ \ \ status\ \ \ The\ new\ state\ of\ the\ tile\r\n
+comment3.text=\r\n\ Sets\ the\ state\ of\ the\ tile\r\n\r\n\ @param\ \ \ \ status\ \ \ The\ new\ state\ of\ the\ tile\ (true\ \=\ hit)\r\n
 comment4.params=x\ y
 comment4.target=boolean\ isInside(int,\ int)
 comment4.text=\r\n\ Checks\ to\ see\ if\ the\ given\ coordinates\ are\ inside\ the\ tile\r\n\ \r\n\ @param\ \ \ x\ \ \ X\ coordinate\ of\ the\ point\r\n\ @param\ \ \ y\ \ \ Y\ coordinate\ of\ the\ point\r\n\ @return\ \ True\ if\ inside,\ false\ if\ not\r\n

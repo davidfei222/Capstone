@@ -15,10 +15,8 @@ public class MenuBar extends JPanel
     private static final int WIDTH = 500;
     //Height of the bar
     private static final int HEIGHT = 130;
-    //Player grid that is being controlled
-    PlayerGridPanel playerGrid;
-    //Computer grid that is being controlled
-    ComputerGridPanel computerGrid;
+    //Player grids that are being controlled
+    PlayerGridPanel playerGrid, computerGrid;
     //JLabels for start of game messages
     private JLabel startMsg;
     //Buttons for setting up the player grid
@@ -31,7 +29,7 @@ public class MenuBar extends JPanel
      * @param   computer    The computer player's grid
      * @param   game    The game window
      */
-    public MenuBar(PlayerGridPanel player, ComputerGridPanel computer)
+    public MenuBar(PlayerGridPanel player, PlayerGridPanel computer)
     {
         playerGrid = player;
         computerGrid = computer;
@@ -100,16 +98,20 @@ public class MenuBar extends JPanel
             }
             else if(e.getActionCommand().equals("Reset all tiles"))
             {
-                playerGrid.resetTiles();
+                if(!(playerGrid.inGame()))
+                {
+                    playerGrid.resetTiles();
+                }
             }
             else if(e.getActionCommand().equals("Start game"))
             {
-                if(playerGrid.isReady())
+                if(!(playerGrid.inGame()) && playerGrid.isReady())
                 {
-                    computerGrid.setShip(Color.BLACK, 1);
-                    computerGrid.setShip(Color.BLACK, 2);
-                    computerGrid.setShip(Color.BLACK, 3);
+                    computerGrid.setShip(Color.BLUE, 1);
+                    computerGrid.setShip(Color.BLUE, 2);
+                    computerGrid.setShip(Color.BLUE, 3);
                     computerGrid.setGameState(true);
+                    playerGrid.setGameState(true);
                 }
             }
 

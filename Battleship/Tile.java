@@ -61,7 +61,7 @@ abstract public class Tile
     /**
      * Sets the state of the tile
      *
-     * @param    status   The new state of the tile
+     * @param    status   The new state of the tile (true = hit)
      */
     public void setState(boolean status)
     {
