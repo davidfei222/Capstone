@@ -30,6 +30,8 @@ public class PlayerGridPanel extends JPanel
     private int bshipI, destI, pboatI = 0;
     //Boolean indicating whether the player has started or not
     private boolean isStarted;
+    //Reference to the opponent's grid (necessary for computerGrid's listener
+    private PlayerGridPanel opponent;
 
     /**
      * Constructor for objects of class GridPanel
@@ -59,6 +61,10 @@ public class PlayerGridPanel extends JPanel
         if(player)
         {
             addMouseListener(new ShipSetListener());
+        }
+        else
+        {
+            addMouseListener(new PlayerMoveMaker());
         }
         isStarted = false;
     }
@@ -416,6 +422,8 @@ public class PlayerGridPanel extends JPanel
      */
     public boolean playerMove(int x, int y)
     {
+        //To make this method work, I will need to put the listener for movemaking inside this class and then make sure that the
+        //two grids can reference each other through instance variables.
         for(int a = 0; a<tiles.length; a++)
         {
             for(int b = 0; b<tiles[a].length; b++)
@@ -491,7 +499,25 @@ public class PlayerGridPanel extends JPanel
             }
         }
     }
+    
+    public class PlayerMoveMaker implements MouseListener
+    {
+        public void mouseClicked(MouseEvent e)
+        {
+            int x = e.getX();
+            int y = e.getY();            
+            
+        }
 
+        public void mouseEntered(MouseEvent e){}
+
+        public void mouseExited(MouseEvent e){}
+
+        public void mousePressed(MouseEvent e){}
+
+        public void mouseReleased(MouseEvent e){}
+    }
+    
     public class ShipSetListener implements MouseListener
     {        
         public void mouseClicked(MouseEvent e)
@@ -538,5 +564,7 @@ public class PlayerGridPanel extends JPanel
 
         public void mouseReleased(MouseEvent e){}
     }
+    
+    
   
 }

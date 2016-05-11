@@ -39,7 +39,7 @@ public class GameWindow extends JFrame
         menu = new MenuBar(playerGrid, computerGrid);
         add(menu);
         menu.setBounds(WIDTH/2-menu.getSize().width/2, HEIGHT-150, menu.getSize().width, menu.getSize().height);
-        addMouseListener(new MoveMaker());
+        //addMouseListener(new MoveMaker());
     }
 
     /**
