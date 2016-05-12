@@ -37,8 +37,9 @@ public class PlayerGridPanel extends JPanel
      * Constructor for objects of class GridPanel
      * 
      * @param   player  Checks if the panel belongs to the player or not to decide which listener to assign
+     * @param   opponent    The opposing player's grid
      */
-    public PlayerGridPanel(boolean player)
+    public PlayerGridPanel(boolean player, PlayerGridPanel opponent)
     {
         setSize(WIDTH, HEIGHT);
         tiles = new Tile[10][10];
@@ -67,6 +68,7 @@ public class PlayerGridPanel extends JPanel
             addMouseListener(new PlayerMoveMaker());
         }
         isStarted = false;
+        this.opponent = opponent;
     }
 
     /**
@@ -386,9 +388,19 @@ public class PlayerGridPanel extends JPanel
     {
         return isStarted;
     }   
-    
+
     /**
-     * Has a player's grid randomly select a tile to be hit as a random move by the other player
+     * Modifies the opponent's grid
+     * 
+     * @param   opfor   The opposing player's grid
+     */
+    public void setOpponent(PlayerGridPanel opfor)
+    {
+        this.opponent = opfor;
+    }
+
+    /**
+     * Has a player's grid randomly select a tile to be hit as a random move by the computer player
      * Updates the grid based on whether it was a ship or ocean tile hit
      */
     public void randomMove()
@@ -414,7 +426,7 @@ public class PlayerGridPanel extends JPanel
     }
 
     /**
-     * Makes a move for the player based on a tile clicked
+     * Makes a move for the human player based on a tile clicked by modifying the opponent's grid
      * 
      * @param   x   x coordinate of click
      * @param   y   y coordinate of click
@@ -499,14 +511,54 @@ public class PlayerGridPanel extends JPanel
             }
         }
     }
-    
+
     public class PlayerMoveMaker implements MouseListener
     {
         public void mouseClicked(MouseEvent e)
         {
             int x = e.getX();
-            int y = e.getY();            
-            
+            int y = e.getY();
+            boolean moveMade = false;
+            if(opponent.inGame()&& inGame() && !(opponent.hasLost()) && !(hasLost()))
+            {
+                for(int a = 0; a<tiles.length; a++)
+                {
+                    for(int b = 0; b<tiles[a].length; b++)
+                    {
+                        if(tiles[a][b].isInside(x,y)==true)
+                        {
+                            if(!(tiles[a][b].isHit()))
+                            {
+                                tiles[a][b].setState(true);
+                                if(tiles[a][b].getID() != 0)
+                                {
+                                    tiles[a][b].setColor(Color.ORANGE);
+                                }
+                                else
+                                {
+                                    tiles[a][b].setColor(Color.BLACK);
+                                }
+                                moveMade = true;
+                            }
+                        }                        
+                    }
+                }
+                if(moveMade)
+                {
+                    opponent.randomMove();
+                }
+                repaint();
+                opponent.repaint();
+            }
+            if(opponent.hasLost())
+            {
+                System.out.println("Computer player has won!");
+            }
+            else if(hasLost())
+            {
+                System.out.println("Human player has won!");
+            }
+
         }
 
         public void mouseEntered(MouseEvent e){}
@@ -517,7 +569,7 @@ public class PlayerGridPanel extends JPanel
 
         public void mouseReleased(MouseEvent e){}
     }
-    
+
     public class ShipSetListener implements MouseListener
     {        
         public void mouseClicked(MouseEvent e)
@@ -533,19 +585,19 @@ public class PlayerGridPanel extends JPanel
                     {
                         if(currentShip == 1 && bshipI < 4 )
                         {
-                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.GRAY,1);
+                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.DARK_GRAY,1);
                             battleship[bshipI] = tiles[a][b];
                             bshipI++;
                         }
                         else if(currentShip == 2 && destI < 3)
                         {
-                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.BLACK,2);
+                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.GRAY,2);
                             destroyer[destI] = tiles[a][b];
                             destI++;
                         }
                         else if(currentShip == 3 && pboatI < 2)
                         {
-                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.RED,3);
+                            tiles[a][b] = new ShipTile(tile.getX(),tile.getY(),Color.LIGHT_GRAY,3);
                             pboat[pboatI] = tiles[a][b];
                             pboatI++;
                         }
@@ -564,7 +616,5 @@ public class PlayerGridPanel extends JPanel
 
         public void mouseReleased(MouseEvent e){}
     }
-    
-    
-  
+
 }

@@ -11,9 +11,13 @@ DEPENDENCIES: None
 HOW TO START THIS PROJECT:
 AUTHORS: David Fei
 USER INSTRUCTIONS:
-When first running the game, it may freeze upon pressing the start button or not let you set all the tiles for a ship.
-The reason for this is currently unknown. 
+To play the game, run the main method of the GameWindow class.
+The player's grid is the one on the right; the computer player is the one on the left.
+To set a ship, click its button in the menu on the bottom and click the desired tile to set it on.  The grid won't respond until one of the buttons has been clicked.
+When making moves during the game, if the tile turns black it's a miss and if it turns orange it's a hit.
+When first running the game, it may freeze upon pressing the start button or not let you set all the tiles for a ship.  The reason for this is currently unknown. 
 If this happens, simply reset the Java Virtual Machine and restart the program. 
+
 
 TILE ID VALUES (all values are int primitives)
 Ocean = 0
